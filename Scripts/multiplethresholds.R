@@ -211,6 +211,10 @@ iso_diff <- isoclim %>%
   mutate(diff=drought-nodrought) %>% 
   mutate(thresh=ifelse(m.tmax<8.4, "Below", "Above"))
 
+ggplot(iso_diff, aes(x=m.tmax, y=diff))+
+  geom_point()+
+  geom_smooth()
+
 iso_densfig <- iso_diff %>% 
   select(diff, thresh, plot_id_needle,treeid) %>% 
   pivot_wider(names_from = thresh, values_from = diff)
@@ -256,6 +260,7 @@ cplotdrought = ggplot(isoclim, aes(x=tmax, y=c, fill=drought, color=drought))+
   annotate("text", y = -24.2, x =7.95,  size=c(5),label = "E-W threshold", angle = 90)
 
 cplotdrought
+
 
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -305,8 +310,8 @@ n_tmax <- isoclim %>%
   ggplot(aes(x=tmax, y=n, fill=drought, color=drought))+
   geom_point(alpha=.2)+
   geom_smooth(method="loess", span=1)+
-  scale_color_manual(values=c("#084f63", "#C99B55"))+
-  scale_fill_manual(values=c( "#084f63","#e9c46a"))+
+  scale_color_manual(values=c("#C99B55","#084f63"))+
+  scale_fill_manual(values=c("#e9c46a", "#084f63"))+
   geom_vline(xintercept = 8.4,  size=1)+
   geom_vline(xintercept = 7.12, linetype="dashed", size=.5)+
   geom_vline(xintercept = 9.51, linetype="dashed", size=.5)+

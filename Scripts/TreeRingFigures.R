@@ -461,7 +461,7 @@ theme_set(
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 )
 
-fig4 <- drought_terciles_fig / dplot
+fig4 <- drought_quantiles_fig / dplot
 
 fig4 + plot_layout(widths = c(2,1.5)) +
   plot_annotation(tag_levels = "a", tag_prefix = '(',tag_suffix = ')')
